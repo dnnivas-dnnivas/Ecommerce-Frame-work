@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'NodeJs'
+        nodejs 'NodeJS'
     }
 
     stages {
@@ -35,14 +35,11 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'playwright-report/**',
-                allowEmptyArchive: true
-
-            echo 'Playwright execution completed'
+            archiveArtifacts artifacts: 'test-results/**', allowEmptyArchive: true
         }
 
         success {
-            echo 'BUILD SUCCESSFUL'
+            echo 'BUILD SUCCESS'
         }
 
         failure {
