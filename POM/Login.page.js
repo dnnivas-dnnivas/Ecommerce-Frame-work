@@ -1,42 +1,33 @@
-class Login{
+class LoginPage{
+      constructor(page){
+               this.page=page;
+               this.username=page.getByPlaceholder("Username")
+                this.password=page.getByPlaceholder("Password")
+                this.loginbtn = page.getByRole('button',{name:"Login"})
+                this.errorMessage=page.locator(".error-message-container.error")
 
-    constructor(page){
+      }
+      
+      async Logintosaucedemo(url,username,passwrod){
+               await this.page.goto(url)
+               await this.username.fill(username)
+               await this.password.fill(passwrod)
+               await this.loginbtn.click()
 
-        this.page=page
-        this.usernamefield=page.getByPlaceholder("Username")
-        this.passwordfield=page.getByPlaceholder("Password")
-        this.loginbutton=page.getByRole('button',{name:"Login"})
-        this.errormessage=page.locator(".error-message-container.error")
+      }
+       async clickonloginbtn(){
+            await this.loginbtn.click()
+        }
+
+      async errorOnlogin(){
+             return await this.errorMessage.textContent();
 
 
+        } 
 
 
-    }
-
-    async goto(){
-
-        await this.page.goto("https://www.saucedemo.com/")
-    }
-
-    async LoginSauceDemo(){
-         await this.page.goto("https://www.saucedemo.com/")
-        await this.usernamefield.fill("standard_user")
-        await this.passwordfield.fill("secret_sauce")
-        await this.loginbutton.click()
-    }
-
-    async clickOnLoginButton(){
-
-        await this.loginbutton.click()
-    }
-
-    async getErrorMsg(){
-
-        return await this.errormessage.textContent()
-    }
 
 
 
 }
-
-export default Login;
+export default LoginPage;
