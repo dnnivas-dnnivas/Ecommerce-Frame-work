@@ -6,7 +6,8 @@ test("login to sauce demo",async({page})=>{
 let login= new Login(page)
 await login.goto()
 await login.LoginSauceDemo()
-
+await login.LoginSauceDemo()
+await login.LoginSauceDemo()
 
 
 })
